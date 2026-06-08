@@ -1,2 +1,3 @@
 *.exe
-motor_data.csv
+*.csv
+!sample_output/motor_data.csv
