@@ -111,15 +111,6 @@ int main() {
         times.push_back(time);
         velocities.push_back(velocity);
 
-        cout << time
-             << " sec : "
-             << currentAngle
-             << " steps"
-             << " | velocity = "
-             << velocity
-             << " steps/s"
-             << endl;
-
         bool reachedTarget =
             (direction > 0 && currentAngle >= targetAngle) ||
             (direction < 0 && currentAngle <= targetAngle);
@@ -133,8 +124,26 @@ int main() {
 
             break;
         }
+        
+        cout << time
+             << " sec : "
+             << currentAngle
+             << " steps"
+             << " | velocity = "
+             << velocity
+             << " steps/s"
+             << endl;
     }
     
+    cout << time
+             << " sec : "
+             << currentAngle
+             << " steps"
+             << " | velocity = "
+             << velocity
+             << " steps/s"
+             << endl;
+
     cout << "\nSimulation Complete\n";
     cout << "Total Time: " << time << " sec" << endl;
     cout << "Final Position: " << currentAngle << " steps" << endl;
