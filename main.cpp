@@ -9,12 +9,11 @@ int main() {
     cout << "Motor Simulator" << endl;
     
     // Initialize the simulation
+    const double STEPS_PER_REV = 20000.0; // steps per revolution
     double currentAngle;
-    cout << "Current angle: ";
-    cin >> currentAngle;
+    cout << "Current position (steps): "; cin >> currentAngle;
     double targetAngle;
-    cout << "Target angle: ";
-    cin >> targetAngle;
+    cout << "Target position (steps): "; cin >> targetAngle;
     double maxRPM;
     cout << "Max RPM: ";
     cin >> maxRPM;
@@ -29,7 +28,7 @@ int main() {
         cout << "Acceleration must be greater than 0." << endl;
         return 1;
     }
-    double maxVelocity = maxRPM * 360.0 / 60.0;
+    double maxVelocity = maxRPM * STEPS_PER_REV / 60.0;
     bool overshoot = false;
     vector<double> positions;
     vector<double> times;
@@ -52,9 +51,10 @@ int main() {
     }
 
     
-    cout << "Acceleration: " << acceleration << " deg/sec^2" << endl;
+    
+    cout << "Acceleration: " << acceleration << " steps/sec^2" << endl;
+    cout << "Max Velocity: " << maxVelocity << " steps/sec" << endl;
     cout << "Time Step: " << dt << " sec" << endl;
-    cout << "Max Velocity: " << maxVelocity << " deg/sec" << endl;
     cout << "" << endl;
 
     // Initial position and time
@@ -97,10 +97,10 @@ int main() {
         cout << time
              << " sec : "
              << currentAngle
-             << " deg"
+             << " steps"
              << " | velocity = "
              << velocity
-             << " deg/s"
+             << " steps/s"
              << endl;
 
         bool reachedTarget =
@@ -120,7 +120,7 @@ int main() {
     
     cout << "\nSimulation Complete\n";
     cout << "Total Time: " << time << " sec" << endl;
-    cout << "Final Angle: " << currentAngle << " deg" << endl;
+    cout << "Final Position: " << currentAngle << " steps" << endl;
     cout << "Overshoot: ";
 
     if (overshoot)
@@ -141,7 +141,7 @@ int main() {
         return 1;
     }
     
-    outputFile << "Time,Angle,Velocity\n";
+    outputFile << "Time,Position_steps,Velocity_steps_per_sec\n";
     for(size_t i = 0; i < times.size(); i++)
     {
         outputFile << times[i]
