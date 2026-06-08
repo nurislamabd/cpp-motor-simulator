@@ -241,3 +241,9 @@ Potential extensions include:
 ## Author
 
 Developed as a robotics and software engineering project to explore motion simulation, trajectory generation, and motor control concepts using C++.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
