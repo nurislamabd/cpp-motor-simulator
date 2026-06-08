@@ -6,27 +6,44 @@
 using namespace std;
 
 int main() {
-    cout << "Motor Simulator" << endl;
+    cout << "Motor Simulator" << endl; 
     
     // Initialize the simulation
     const double STEPS_PER_REV = 20000.0; // steps per revolution
+    cout << "Steps per revolution: " << STEPS_PER_REV << endl; 
+
     double currentAngle;
     cout << "Current position (steps): "; cin >> currentAngle;
+    while(currentAngle < 0 || currentAngle > STEPS_PER_REV)
+    {
+        cout << "Current position must be greater than or equal to 0 and less than or equal to " << STEPS_PER_REV << "." << endl;
+        cout << "Current position (steps): "; cin >> currentAngle;
+    }
     double targetAngle;
     cout << "Target position (steps): "; cin >> targetAngle;
+    while(targetAngle < 0 || targetAngle > STEPS_PER_REV)
+    {
+        cout << "Target position must be greater than or equal to 0 and less than or equal to " << STEPS_PER_REV << "." << endl;
+        cout << "Target position (steps): "; cin >> targetAngle;
+    }
     double maxRPM;
     cout << "Max RPM: ";
     cin >> maxRPM;
+    while(maxRPM <= 0)
+    {
+        cout << "Max RPM must be greater than 0." << endl;
+        cout << "Max RPM: "; cin >> maxRPM;
+    }
     double dt = 0.01;
     double time = 0.0;
     double velocity = 0;
     double acceleration;
-    cout << "Acceleration (deg/sec^2): ";
+    cout << "Acceleration (steps/sec^2): ";
     cin >> acceleration;
-    if(acceleration <= 0)
+    while(acceleration <= 0)
     {
         cout << "Acceleration must be greater than 0." << endl;
-        return 1;
+        cout << "Acceleration (steps/sec^2): "; cin >> acceleration;
     }
     double maxVelocity = maxRPM * STEPS_PER_REV / 60.0;
     bool overshoot = false;
