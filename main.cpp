@@ -9,7 +9,7 @@ int main() {
     cout << "Motor Simulator" << endl; 
     
     // Initialize the simulation
-    const double STEPS_PER_REV = 20000.0; // steps per revolution
+    const double STEPS_PER_REV = 19580.0; // steps per revolution of J6 motor in AR4 Robot
     cout << "Steps per revolution: " << STEPS_PER_REV << endl; 
 
     double currentAngle;
@@ -34,7 +34,7 @@ int main() {
         cout << "Max RPM must be greater than 0." << endl;
         cout << "Max RPM: "; cin >> maxRPM;
     }
-    double dt = 0.01;
+    double dt = 7.5e-6;
     double time = 0.0;
     double velocity = 0;
     double acceleration;
